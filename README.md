@@ -12,6 +12,8 @@ Currently expects a hardcoded Zoho People Job ID that all Worklogs will be added
 
 Designed to be used with Jira Automation Rules, triggered on Worklog Create. Use the Azure Function URL with the query parameters along the following lines.
 
+The Zoho People API AuthToken needs to be stored in the environment variable ZOHO_PEOPLE_API_AUTHTOKEN.
+
 _Replace **JOBID** with your own._
 
 _Don't forget the urlEncode if using different Smart Values._

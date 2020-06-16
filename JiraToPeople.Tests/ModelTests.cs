@@ -21,6 +21,7 @@
 using System;
 using Xunit;
 using JiraToPeople.PeopleAPI.Model;
+using JiraToPeople.PeopleAPI.Extensions;
 
 namespace JiraToPeople.Tests
 {

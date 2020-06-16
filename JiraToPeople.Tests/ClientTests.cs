@@ -17,19 +17,44 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
+using System;
+using Xunit;
+using JiraToPeople.PeopleAPI;
 
-using static JiraToPeople.PeopleAPI.Model.PeopleTimeLog;
-
-namespace JiraToPeople.PeopleAPI.Model
+namespace JiraToPeople.Tests
 {
-    public static class PeopleTimeLogExtentions
+    public class ClientTests
     {
-        public static string ConvertToString(this BillingStatusType billingStatusType)
-            => billingStatusType switch
-            {
-                BillingStatusType.Billable => "billable",
-                BillingStatusType.NonBillable => "non-billable",
-                _ => "unknown"
-            };
+        [Fact]
+        public void CanCreateWithAuthToken()
+        {
+            var obj = new ZohoPeopleHttpClient(@"alksjfdlasdklf");
+            Assert.NotNull(obj);
+            Assert.IsType<ZohoPeopleHttpClient>(obj);
+        }
+
+        [Fact]
+        public void CannotCreateFromDefaultCtor()
+        {
+            Assert.Throws<ArgumentNullException>(() => _ = new ZohoPeopleHttpClient());
+        }
+
+        [Fact]
+        public void CannotCreateWithoutAuthTokenNull()
+        {
+            Assert.Throws<ArgumentException>(() => _ = new ZohoPeopleHttpClient(null));
+        }
+
+        [Fact]
+        public void CannotCreateWithoutAuthTokenEmpty()
+        {
+            Assert.Throws<ArgumentException>(() => _ = new ZohoPeopleHttpClient(string.Empty));
+        }
+
+        [Fact]
+        public void CannotCreateWithoutAuthTokenWhitespace()
+        {
+            Assert.Throws<ArgumentException>(() => _ = new ZohoPeopleHttpClient(@"     "));
+        }
     }
 }

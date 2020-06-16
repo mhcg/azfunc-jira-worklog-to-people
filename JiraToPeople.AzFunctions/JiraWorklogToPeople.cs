@@ -84,13 +84,15 @@ namespace JiraToPeople.AzFunctions
                 string logID = "";
                 try
                 {
+                    log.LogInformation("Calling AddTimeLogAsync.", timelog);
                     logID = await PeopleHttpClient.AddTimeLogAsync(timelog);
-                    log.LogInformation("AddtimeLogAsync called without issues.", logID);
+                    log.LogInformation("AddTimeLogAsync called without issues.", logID);
                     result = new { timeLogId = logID.ToString() };
                 }
                 catch (Exception ex)
                 {
-                    log.LogCritical("Unable to call AddTimeLogAsync.", ex);
+                    log.LogTrace($"Unable to call AddTimeLogAsync: {ex.Message}", ex);
+                    log.LogCritical($"Unable to call AddTimeLogAsync: {ex.Message}", ex);
                     throw ex;
                 }
             }

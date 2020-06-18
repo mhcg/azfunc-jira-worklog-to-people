@@ -113,17 +113,17 @@ namespace JiraToPeople.PeopleAPI.Model
                 return null;
             if (string.IsNullOrWhiteSpace(jobID))
                 return null;
-            if (!DateTime.TryParse(startDateTime, out _))
+            if (!DateTime.TryParse(startDateTime, out var dateTime))
                 return null;
-            if (!int.TryParse(durationInSeconds, out _))
+            if (!int.TryParse(durationInSeconds, out var duration))
                 return null;
 
             // Create object and return.
             return new PeopleTimeLog(
-                userEmail!,
-                jobID!,
-                DateTime.Parse(startDateTime!),
-                int.Parse(durationInSeconds!)
+                userEmail: userEmail!,
+                jobID: jobID!,
+                startDateTime: dateTime,
+                durationInSeconds: duration
                 );
         }
     }
